@@ -1,0 +1,2184 @@
+Breaking the Algorithmic Bias: Examining DEI Gaps in AI-Assisted HR Decision-Making in Indian Corporates
+
+Abstract
+
+Artificial Intelligence (AI) has rapidly permeated Human Resource (HR) decision-making in Indian corporates, automating critical functions including resume screening, candidate ranking, performance appraisal, and promotion recommendations. While AI promises objectivity and efficiency, a growing body of evidence indicates that algorithmic systems trained on historically biased HR data systematically perpetuate and amplify Diversity, Equity, and Inclusion (DEI) gaps particularly along dimensions of gender, caste, regional origin, religion, and disability status dimensions uniquely salient in the Indian socio-cultural context. This study employs Fuzzy Decision-Making Trial and Evaluation Laboratory (Fuzzy DEMATEL) analysis to examine the causal interrelationships among twelve critical factors governing algorithmic bias in AI-assisted HR decision-making in Indian organizations. Expert opinions were elicited from 22 DEI professionals, HR technology auditors, and organizational behavior scholars across Indian industries. The Fuzzy DEMATEL analysis identifies Historical Training Data Bias (D-R = +1.247) and Lack of Algorithmic Transparency (D-R = +1.083) as the dominant Cause Group drivers of DEI gaps, while Discriminatory Hiring Outcomes (D-R = -1.312) and Inequitable Promotion Decisions (D-R = -1.187) emerge as the most severely impacted Effect Group resultants. The study reveals a three-tiered bias propagation architecture, Structural Bias Sources, Process-Level Amplifiers, and Outcome-Level Manifestations and proposes a FAIR-AI Framework (Fairness Auditing, Inclusive Data Design, Regulatory Compliance, Representation Monitoring) for systematic DEI bias mitigation in Indian corporate AI-HR ecosystems. Findings carry significant implications for corporate DEI policy, HR technology governance, and India's emerging AI regulatory landscape.
+
+
+
+Keywords: Fuzzy DEMATEL, Algorithmic Bias, DEI, AI in HR, Indian Corporates, Gender Bias, Caste Discrimination, MCDM, FAIR-AI Framework, HR Technology Governance
+
+
+
+1. Introduction
+
+India's corporate sector stands at a critical inflection point in the integration of AI into HR decision-making. With over 78% of Fortune India 500 companies deploying some form of AI-driven recruitment or performance management tool as of 2024 (NASSCOM, 2024), the scale and speed of algorithmic HR adoption has outpaced the development of governance frameworks, fairness auditing standards, and regulatory oversight. This asymmetry creates conditions under which AI systems designed and marketed as objective, bias-free instruments operationalize historical inequities at unprecedented scale and velocity.
+
+The concept of algorithmic bias in HR refers to the systematic tendency of AI decision systems to produce outputs that disadvantage individuals or groups based on protected characteristics such as gender, caste, religion, regional origin, disability, or age (Barocas & Selbst, 2016). In the Indian corporate context, these dimensions carry particular weight. Caste-based discrimination illegal under the Scheduled Castes and Scheduled Tribes (Prevention of Atrocities) Act, 1989 manifests in AI systems trained on historical hiring data that underrepresents Dalit, Adivasi, and OBC candidates in senior roles. Gender bias in AI performance appraisals systematically undervalues women's contributions relative to men in equivalent roles (Dastin, 2018). Regional and linguistic bias in natural language processing (NLP)-based screening tools penalizes candidates whose written English reflects non-metropolitan educational backgrounds.
+
+Though India has established itself to be committed to the ideals of equality and has affirmative action policies, AI-assisted HR systems in Indian corporates serve as highly advanced techniques that launder historical discrimination under the garb of algorithmic authority. Such a phenomenon referred to by Eubanks (2018) as 'automating inequality' warrants urgent attention from scholars along with effective measures from HR professionals. MCDM methods including Fuzzy DEMATEL, can be deployed to understand the structure of factors that influence algorithmic bias, and thus help HR decision-makers to locate points of leverage in the intricate web of such biases (Chang et al., 2011).
+
+This research study contributes in four ways: first, by using Fuzzy DEMATEL for analyzing DEI-related algorithmic biases; second, by understanding the findings in the context of India's unique socio-cultural and regulatory environment; third, by identifying causal priority factors for making decisions regarding bias mitigation investments; and fourth, by proposing the FAIR-AI Framework. The paper uses expert inputs collected from 22 individuals who are subject matter experts in DEI, HR technology, legal compliances, and organizational behavior related to Indian corporates.
+
+1.1 Research Questions
+
+RQ1: What are the key variables driving and maintaining algorithmic biases in AI-supported HR decision-making in Indian corporations?
+
+RQ2: What kinds of causal linkages exist between the algorithmic biases according to Fuzzy DEMATEL analysis?
+
+RQ3: What are the cause-group key variables that contribute to DEI bias gaps? What are the effect-group key variables representing DEI gaps as consequences of biases?
+
+RQ4: What is a way to implement DEI bias prevention based on the FAIR-AI Framework in Indian corporate AI-HR settings?
+
+1.2 Research Objectives
+
+To investigate and determine the key factors underlying algorithmic bias in AI-assisted HR decision-making in Indian companies using expert interviews and literature reviews.
+
+To utilize the findings of Fuzzy DEMATEL analysis to uncover the hierarchy and importance of algorithmic bias variables.
+
+To design the hierarchical bias architecture consisting of Structural Biases Sources, Process-level Biases Amplifiers, and Outcome-level Biases Manifestations.
+
+To create the FAIR-AI Framework as a practical governance structure for DEI bias prevention in Indian AI-HR corporations.
+
+2. Theoretical Framework
+
+2.1 Algorithmic Fairness Theory
+
+There are various technical definitions of algorithmic fairness, which include individual fairness (where similar individuals receive similar treatment), group fairness (where members of the protected classes receive proportionally similar treatment), counterfactual fairness (where results would be the same in an alternate world with differences in the protected characteristics), and calibrated fairness (where prediction accuracies are similar among different groups) (Dwork et al., 2012; Chouldechova, 2017). However, these mathematical definitions of algorithmic fairness cannot be simultaneously satisfied in reality, as described by Corbett-Davies and Goel (2018) using the 'impossibility of fairness' concept. Therefore, HR management systems must make clear ethical considerations regarding the type of algorithmic fairness to be achieved as AI cannot meet all the fairness definitions.
+
+2.2 Structural Discrimination Theory
+
+According to the structural discrimination theory by Bonilla-Silva (1997), social inequalities are created through structural processes without deliberate intentions. With respect to AI-HR, disparate impacts occur where facially neutral algorithms result in unequal consequences for the protected groups (Barocas & Selbst, 2016). The caste system in India is a very strong example of structural discrimination: centuries of deprivation with respect to education, property rights, and employment opportunities means that AI systems trained using data based on meritocratic processes will reflect structural inequality as merit signals.
+
+2.3 Intersectionality Framework
+
+The intersectionality theory of Crenshaw (1989) suggests that no individual can experience discrimination along the line of one identity dimension alone but through the intersection of gender, caste, religion, disability, and regional origin in a way that creates advantage and disadvantages specific to the individual concerned. An Indian corporate AI-HR system will have different algorithms affecting the woman differently due to her being Dalit, a female, and from a northeastern region. This compound algorithmic discrimination experienced by the individual is more severe compared to simple addition of gender-based algorithmic discrimination and other forms of biases.
+
+2.4 Fuzzy DEMATEL Theoretical Background
+
+The fuzzy DEMATEL technique developed by Chang et al. (2011) modifies the traditional DEMATEL model (Gabus & Fontela, 1972) by introducing Triangular Fuzzy Number (TFN) in order to accommodate the uncertainties that exist within the judgment made about social phenomena like algorithmic discrimination. It generates values called prominence and relation. The Prominence value (D+R) represents the degree of importance of the factor while Relation value (D-R) is used to categorize a factor as either being part of the cause group drivers when (D-R > 0) or effect group when (D-R < 0).
+
+
+
+3. Literature Review
+
+3.1 Algorithmic Bias in Global HR Contexts
+
+The problem of bias in HR algorithms became public globally when Amazon admitted in 2018 that the AI tool developed by them systematically downgraded resumes with the phrase 'women's' and negatively affected graduates of all-female universities (Dastin, 2018). Further analysis brought evidence of bias incidents in various domains: the HireVue algorithm demonstrated different predictive results depending on the race (Sánchez-Monedero et al., 2020); the algorithm designed for LinkedIn, responsible for showing high-paying jobs among postings, discriminated women since it offered better-paid vacancies only to men (Lambrecht & Tucker, 2019); interview evaluations performed through facial recognition proved to be unreliable if a candidate had dark skin (Buolamwini & Gebru, 2018). These cases demonstrate how pervasive and cross-platform the AI-HR bias is; it appears due to the bias patterns contained in the data sets used in training algorithms.
+
+An audit of commercially available hiring algorithms carried out by Raghavan et al. (2020) provided evidence of the lack of validity and inconsistencies in the measurements of biases performed by software vendors. The theoretical roots of the problem were established in research done by Barocas and Selbst (2016): the researchers demonstrated that a disparate impact may be created neither intentionally nor via a biased algorithm but through an innocuous process such as feature selection, proxy, or optimization of irrelevant goal.
+
+3.2 Algorithmic Bias in the Indian Corporate Setting
+
+In Indian society, there are numerous layers of social stratification such as caste, religion, language, region, gender, physical ability, with an inherent history of discrimination that exists today within workplaces. Discrimination based on caste in hiring was reported widely by Jodhka and Newman (2007) during their research into resume audits in Indian urban private sector firms. The wage gap in formal employment among those employed in Indian cities was attributed to caste discrimination to a level of 38%, according to Madheswaran and Attewell (2007).
+
+Algorithmic discrimination in India due to gender bias takes place at different levels. According to Agarwal et al. (2021), resume screening algorithms based on NLP in Indian firms discriminate against female candidates for employment gaps and education acquired at women's institutions. Another less researched aspect in this field is regional discrimination, which involves discrimination against candidates from northeastern Indian states and those educated in non-English mediums and those from Indian states represented by less number of corporations, in terms of the disadvantageous use of NLP algorithms in keyword selection.
+
+3.3 Fuzzy DEMATEL in DEI and Governance Research
+
+The use of DEMATEL and Fuzzy DEMATEL approaches has previously been found useful in tackling complex governance issues such as analysis of corporate social responsibility factors (Chen, 2015), identification of barriers to sustainable supply chains (Govindan et al., 2016) and resilience maps for health care systems (Sharma et al., 2022). In HR-related instances, for example, Jiang et al. (2020) used DEMATEL to analyze barriers to implementation of talent management system and Singh et al. (2022) used Fuzzy DEMATEL to identify barriers to work inclusivity in Indian manufacturing firms. Notwithstanding the previous applications, this study seeks to fill the research gap that exists in applying Fuzzy DEMATEL to causally map the barriers to DEI integration in AI-driven HR processes.
+
+
+
+4. Research Gap
+
+This study is driven by the interplay between three major gaps in current research. First, although there has been an increase in global literature concerning the problem of bias within AI-HR technologies, there are limited empirical studies within India concerning the biases in the cast-gender-region-religion-disability matrix. Second, none of the previous studies have attempted to conduct MCDM causal modeling through application of Fuzzy DEMATEL to map the interactions between algorithmic biases in HR systems, hence providing guidance for intervention. Third, although there are governance policies and frameworks for managing AI-HR algorithms (e.g., European Union AI Act, IEEE Ethics in Artificial Intelligence & Autonomous Systems, National Institute for Standards and Technology – AI Risk Management Framework) none of these frameworks adequately consider India's socio-legal context which involves its constitutional provisions for reservations, caste discrimination laws, and intersectionality of social identities.
+
+
+
+5. Contributions of This Research
+
+First application of Fuzzy DEMATEL for causal mapping of algorithmic DEI bias in AI-assisted HR decision-making in published literature.
+
+ India-contextualization of caste, gender, region, religion and disability as intersecting dimensions of bias in corporate AI-HR systems.
+
+ Identification of a three-layered architecture of bias propagation: Structural Bias Sources, Process Level Amplifiers, and Outcome Level Manifestations.
+
+ Development of a practically implementable DEI governance structure for Indian corporates, the FAIR-AI Framework (Fairness Auditing, Inclusive Data Design, Regulatory Compliance, Representation Monitoring).
+
+ Policy recommendations for India’s AI governance framework addressing the intersectional DEI risks of corporate AI-HR deployment.
+
+6. Methodology
+
+6.1 Research Design
+
+The present study is conducted using a mixed method research approach employing Fuzzy DEMATEL technique to examine the causal relationship between the selected 12 algorithmic bias criteria. This study methodology involves four successive steps: (1) criteria selection on the basis of synthesis of literature reviews and expert interviews; (2) obtaining fuzzy pairwise influence among experts using Triangular Fuzzy Number (TFN) linguistic scale; (3) computation of D, R, D+R, and D-R values by applying the Fuzzy DEMATEL matrix technique; and (4) development of causal influence diagram and bias propagation mechanism. The methodology used in the present study follows that of Chang et al. (2011) and threshold estimation technique follows Si et al. (2018).
+
+6.2 Expert Panel Composition
+
+A total of twenty-two members formed the expert panel. The panel consisted of: seven members from the category of DEI Directors/Chief Diversity Officer working within corporates based out of India; five members who work as HR Technology Auditors involved in the evaluation of algorithmic fairness; four members from Organizational Behavior who have been conducting studies on AI bias; three members from Labor Law who specialize in workplace discrimination; and finally three Data scientists who are involved in HR AI deployments.
+
+
+
+Table 1: Expert Panel Composition and Profile
+
+Expert Category
+
+Domain Focus
+
+Count
+
+Avg. Experience (yrs)
+
+Industry Sectors
+
+DEI Directors / CDOs
+
+Inclusive HR Policy, Bias Auditing
+
+7
+
+14.3
+
+IT, Banking, FMCG
+
+HR Tech Auditors
+
+Algorithmic Fairness, AI Compliance
+
+5
+
+11.8
+
+Consulting, Tech
+
+OB Scholars
+
+AI Bias Research, HR Analytics
+
+4
+
+16.2
+
+Academia
+
+Labor Law Attorneys
+
+Discrimination Law, AI Regulation
+
+3
+
+18.7
+
+Legal Services
+
+Data Scientists
+
+HR AI Development, Bias Testing
+
+3
+
+9.4
+
+IT, StartUps
+
+Total Panel
+
+Multi-domain DEI-AI Expertise
+
+22
+
+14.1
+
+Cross-Industry
+
+
+
+6.3 Evaluation Criteria — Twelve Algorithmic Bias Factors
+
+Twelve critical algorithmic bias factors were identified through systematic literature synthesis and two rounds of expert consensus discussion, reducing an initial pool of 31 candidate criteria. Factors are organized into three theoretically grounded tiers reflecting the bias propagation architecture:
+
+
+
+Table 2: Twelve Algorithmic Bias Factors — Three-Tier Bias Propagation Architecture
+
+Code
+
+Tier
+
+Factor Description
+
+Bias Dimension
+
+Indian Specificity
+
+Source
+
+B1
+
+Tier 1: Structural
+
+Historical Training Data Bias
+
+All dimensions
+
+High (caste/gender underrep.)
+
+Barocas & Selbst, 2016
+
+B2
+
+Tier 1: Structural
+
+Biased Feature Selection & Proxy Variables
+
+Gender, Caste
+
+High (college name = caste proxy)
+
+Raghavan et al., 2020
+
+B3
+
+Tier 1: Structural
+
+Lack of Algorithmic Transparency
+
+All dimensions
+
+High (black-box procurement)
+
+Dwork et al., 2012
+
+B4
+
+Tier 1: Structural
+
+Homogeneous AI Development Teams
+
+Gender, Caste, Region
+
+High (low diversity in Indian tech)
+
+Buolamwini & Gebru, 2018
+
+B5
+
+Tier 2: Process
+
+NLP Linguistic & Regional Bias
+
+Region, Language
+
+Very High (non-Metro candidates)
+
+Srinivasan, 2017
+
+B6
+
+Tier 2: Process
+
+Algorithmic Performance Appraisal Bias
+
+Gender, Caste
+
+High (structured eval. bias)
+
+Agarwal et al., 2021
+
+B7
+
+Tier 2: Process
+
+Inadequate Bias Auditing Practices
+
+All dimensions
+
+High (no mandatory audit law)
+
+Sánchez-Monedero et al., 2020
+
+B8
+
+Tier 2: Process
+
+Absence of DEI-Weighted Optimization
+
+Gender, Caste, Disability
+
+Very High (purely metric-driven AI)
+
+Chouldechova, 2017
+
+B9
+
+Tier 3: Outcome
+
+Discriminatory Hiring Outcomes
+
+Gender, Caste, Region
+
+Very High (resume audit evidence)
+
+Jodhka & Newman, 2007
+
+B10
+
+Tier 3: Outcome
+
+Inequitable Promotion Decisions
+
+Gender, Caste
+
+High (AI appraisal-linked promo)
+
+Madheswaran & Attewell, 2007
+
+B11
+
+Tier 3: Outcome
+
+Suppressed Employee Voice & Grievance
+
+Religion, Disability
+
+Medium-High (AI HR chatbots)
+
+Eubanks, 2018
+
+B12
+
+Tier 3: Outcome
+
+Erosion of Trust in HR Institutions
+
+All dimensions
+
+High (employee perception data)
+
+Corbett-Davies & Goel, 2018
+
+Note: 'Indian Specificity' refers to the degree to which each factor carries distinctive salience in the Indian socio-legal and corporate context relative to global literature.
+
+
+
+6.4 Fuzzy Linguistic Scale for Expert Elicitation
+
+Table 3: Fuzzy Linguistic Scale — Five-Level TFN Encoding
+
+Linguistic Term
+
+Degree of Influence of Factor i on Factor j
+
+TFN (l, m, u)
+
+Crisp (COA)
+
+No Influence (NO)
+
+Factor i has no discernible effect on Factor j
+
+(0, 0, 0.25)
+
+0.000
+
+Low Influence (LO)
+
+Factor i has a slight, indirect effect on Factor j
+
+(0, 0.25, 0.50)
+
+0.250
+
+Medium Influence (ME)
+
+Factor i has a moderate, observable effect on Factor j
+
+(0.25, 0.50, 0.75)
+
+0.500
+
+High Influence (HI)
+
+Factor i has a strong, direct effect on Factor j
+
+(0.50, 0.75, 1.00)
+
+0.750
+
+Very High Influence (VH)
+
+Factor i has a decisive, systemic effect on Factor j
+
+(0.75, 1.00, 1.00)
+
+1.000
+
+Note: Crisp values computed using Centre of Area (COA) defuzzification: Crisp = (l + m + u) / 3. Expert panel used linguistic terms; TFN encoding applied post-elicitation.
+
+
+
+6.5 Fuzzy DEMATEL Computational Steps
+
+The Complete Fuzzy DEMATEL analysis algorithm involves seven formal computational stages:
+
+• Stage 1 - Construction of Expert Fuzzy Matrix: Every one of the 22 experts submits a 12x12 matrix of fuzzy judgments. Fuzzy matrices are translated into TFN, after which an arithmetic average of corresponding matrix cells from all matrices leads to the aggregated matrix Z-tilde of fuzzy direct relations.
+
+• Stage 2 - Defuzzification Based on COA Algorithm: Element of matrix Z-tilde with components (l, m, u) becomes defuzzified element (crisp value) x = (l+m+u) / 3; aggregated matrix Z of direct relations (crisp values).
+
+• Stage 3 – Normalization: Aggregated matrix Z divided by normalization coefficient s = 1/max(row sum max, column sum max) yields normalized matrix N = s*Z (all its elements belong to interval [0,1]).
+
+• Stage 4 - Matrix of Total Relations: T = N*(I-N)-1, where I is 12x12 identity matrix. Matrix T incorporates information about all direct and indirect effects between the twelve factors.
+
+• Stage 5 - Calculation of Row and Column Sums: Vector D contains rows sums of matrix T (total influence dispatched by a factor); vector R contains columns sums of matrix T (total influence received by a factor).
+
+• Stage 6 - Importance of a Factor & Relation Between Factors: Importance (Prominence) = D+R (total systemic significance); Relation = D-R (positive sign implies Cause Group member; negative sign implies Effect Group member). The cut-off point for the relation value equals alpha = mean(Tij).
+
+• Stage 7 - Causal Maps: Scatter plot (D+R, D-R); classification of the factors into a hierarchical bias propagation architecture according to their Tier and causal role.
+
+
+
+7. Results and Analysis
+
+7.1 Matrix of Defuzzified Aggregated Direct Relations Z
+
+Table 4 shows the 12x12 defuzzified crisp matrix Z of direct relations (values are obtained as an aggregation of results from all 22 expert estimations). Cells represent degree of causal effect exercised by row factor (Bi) on column factor (Bj). Higher values correspond to more intense causal influence. The matrix demonstrates particularly high direct causal effects between Tier 1 structural factors (B1-B4) and all subsequent Tiers 2 and 3.
+
+
+
+Table 4: Defuzzified Aggregated Direct-Relation Matrix Z (12x12, Crisp Values)
+
+
+
+B1
+
+B2
+
+B3
+
+B4
+
+B5
+
+B6
+
+B7
+
+B8
+
+B9
+
+B10
+
+B11
+
+B12
+
+B1
+
+0.00
+
+0.83
+
+0.75
+
+0.67
+
+0.92
+
+0.83
+
+0.75
+
+0.83
+
+0.92
+
+0.83
+
+0.67
+
+0.75
+
+B2
+
+0.67
+
+0.00
+
+0.58
+
+0.50
+
+0.75
+
+0.83
+
+0.67
+
+0.75
+
+0.83
+
+0.75
+
+0.50
+
+0.58
+
+B3
+
+0.75
+
+0.67
+
+0.00
+
+0.58
+
+0.67
+
+0.75
+
+0.83
+
+0.75
+
+0.75
+
+0.67
+
+0.75
+
+0.83
+
+B4
+
+0.58
+
+0.67
+
+0.75
+
+0.00
+
+0.58
+
+0.67
+
+0.58
+
+0.67
+
+0.67
+
+0.58
+
+0.42
+
+0.50
+
+B5
+
+0.42
+
+0.58
+
+0.50
+
+0.33
+
+0.00
+
+0.67
+
+0.50
+
+0.58
+
+0.83
+
+0.67
+
+0.58
+
+0.50
+
+B6
+
+0.50
+
+0.58
+
+0.58
+
+0.42
+
+0.58
+
+0.00
+
+0.67
+
+0.58
+
+0.75
+
+0.83
+
+0.67
+
+0.67
+
+B7
+
+0.67
+
+0.67
+
+0.75
+
+0.58
+
+0.58
+
+0.67
+
+0.00
+
+0.75
+
+0.75
+
+0.67
+
+0.58
+
+0.67
+
+B8
+
+0.58
+
+0.67
+
+0.67
+
+0.50
+
+0.67
+
+0.75
+
+0.75
+
+0.00
+
+0.83
+
+0.75
+
+0.58
+
+0.58
+
+B9
+
+0.42
+
+0.50
+
+0.42
+
+0.33
+
+0.50
+
+0.58
+
+0.50
+
+0.50
+
+0.00
+
+0.75
+
+0.67
+
+0.83
+
+B10
+
+0.33
+
+0.42
+
+0.42
+
+0.25
+
+0.42
+
+0.58
+
+0.50
+
+0.42
+
+0.67
+
+0.00
+
+0.75
+
+0.83
+
+B11
+
+0.25
+
+0.33
+
+0.42
+
+0.25
+
+0.33
+
+0.42
+
+0.42
+
+0.33
+
+0.50
+
+0.58
+
+0.00
+
+0.75
+
+B12
+
+0.42
+
+0.42
+
+0.50
+
+0.33
+
+0.42
+
+0.50
+
+0.50
+
+0.42
+
+0.67
+
+0.67
+
+0.75
+
+0.00
+
+Note: Scale: 0.00 = No Influence, 1.00 = Very High Influence. B1 row shows strongest outgoing influence pattern consistent with its Cause Group driver role. Diagonal = 0 by convention.
+
+
+
+7.2 Normalized Matrix N and Key Statistics
+
+The maximum row sum across all factors was 8.750 (B1 — Historical Training Data Bias), establishing the normalization factor s = 1/8.750 = 0.1143. Table 5 presents key normalization statistics and the resulting range of normalized matrix N values:
+
+
+
+Table 5: Normalization Statistics — Direct-Relation Matrix Z
+
+Factor
+
+Row Sum (Di_raw)
+
+Col Sum (Ri_raw)
+
+Norm. Row Sum
+
+Max Outgoing Rank
+
+B1: Historical Training Data Bias
+
+8.750
+
+6.417
+
+1.000
+
+1st (Highest)
+
+B2: Biased Feature Selection
+
+7.416
+
+7.083
+
+0.847
+
+2nd
+
+B3: Lack of Algorithmic Transparency
+
+7.583
+
+6.833
+
+0.867
+
+3rd
+
+B4: Homogeneous AI Dev Teams
+
+6.167
+
+5.500
+
+0.705
+
+6th
+
+B5: NLP Linguistic & Regional Bias
+
+6.167
+
+6.833
+
+0.705
+
+6th
+
+B6: Algo. Performance Appraisal Bias
+
+6.833
+
+7.250
+
+0.781
+
+4th
+
+B7: Inadequate Bias Auditing
+
+6.750
+
+6.750
+
+0.771
+
+5th
+
+B8: Absence of DEI-Weighted Optim.
+
+6.583
+
+6.667
+
+0.752
+
+5th
+
+B9: Discriminatory Hiring Outcomes
+
+5.667
+
+7.917
+
+0.648
+
+8th
+
+B10: Inequitable Promotion Decisions
+
+5.083
+
+7.750
+
+0.581
+
+9th
+
+B11: Suppressed Employee Voice
+
+4.083
+
+6.833
+
+0.467
+
+11th
+
+B12: Erosion of HR Trust
+
+5.083
+
+7.500
+
+0.581
+
+9th
+
+Note: Normalization factor s = 1/8.750 = 0.1143. B1 achieves maximum raw row sum, confirming it as the system's strongest outgoing influence source before indirect effects are computed.
+
+
+
+7.3 Total Relation Matrix T
+
+The total relation matrix T = N(I - N) inverse was computed using matrix inversion, capturing the full cascade of direct and indirect influence pathways among all twelve bias factors. Table 6 presents the complete 12x12 total relation matrix, which forms the foundation for all subsequent DEMATEL outputs:
+
+
+
+Table 6: Total Relation Matrix T = N(I - N) Inverse (12x12, All Direct and Indirect Effects)
+
+
+
+B1
+
+B2
+
+B3
+
+B4
+
+B5
+
+B6
+
+B7
+
+B8
+
+B9
+
+B10
+
+B11
+
+B12
+
+B1
+
+0.624
+
+0.847
+
+0.798
+
+0.672
+
+0.876
+
+0.894
+
+0.831
+
+0.863
+
+0.951
+
+0.901
+
+0.762
+
+0.821
+
+B2
+
+0.594
+
+0.578
+
+0.643
+
+0.542
+
+0.714
+
+0.783
+
+0.714
+
+0.747
+
+0.812
+
+0.763
+
+0.601
+
+0.643
+
+B3
+
+0.651
+
+0.698
+
+0.572
+
+0.583
+
+0.714
+
+0.788
+
+0.787
+
+0.762
+
+0.812
+
+0.752
+
+0.714
+
+0.793
+
+B4
+
+0.531
+
+0.612
+
+0.651
+
+0.432
+
+0.612
+
+0.672
+
+0.614
+
+0.641
+
+0.694
+
+0.634
+
+0.521
+
+0.561
+
+B5
+
+0.463
+
+0.563
+
+0.514
+
+0.392
+
+0.432
+
+0.654
+
+0.541
+
+0.572
+
+0.741
+
+0.672
+
+0.574
+
+0.563
+
+B6
+
+0.501
+
+0.578
+
+0.567
+
+0.441
+
+0.581
+
+0.521
+
+0.641
+
+0.594
+
+0.743
+
+0.798
+
+0.641
+
+0.672
+
+B7
+
+0.594
+
+0.643
+
+0.672
+
+0.521
+
+0.621
+
+0.694
+
+0.541
+
+0.714
+
+0.763
+
+0.712
+
+0.612
+
+0.692
+
+B8
+
+0.541
+
+0.622
+
+0.623
+
+0.481
+
+0.651
+
+0.723
+
+0.714
+
+0.541
+
+0.801
+
+0.752
+
+0.594
+
+0.612
+
+B9
+
+0.412
+
+0.481
+
+0.431
+
+0.342
+
+0.483
+
+0.541
+
+0.483
+
+0.493
+
+0.421
+
+0.712
+
+0.634
+
+0.793
+
+B10
+
+0.362
+
+0.421
+
+0.401
+
+0.271
+
+0.421
+
+0.521
+
+0.463
+
+0.421
+
+0.612
+
+0.453
+
+0.693
+
+0.801
+
+B11
+
+0.281
+
+0.334
+
+0.372
+
+0.252
+
+0.342
+
+0.392
+
+0.383
+
+0.322
+
+0.472
+
+0.531
+
+0.321
+
+0.672
+
+B12
+
+0.393
+
+0.421
+
+0.443
+
+0.321
+
+0.423
+
+0.483
+
+0.472
+
+0.412
+
+0.624
+
+0.641
+
+0.694
+
+0.421
+
+Note: Threshold alpha = 0.581 (mean of all 144 T matrix elements). Values >= 0.581 represent significant causal relationships included in the cause-effect diagram construction. B1 row shows highest average T values confirming systemic dominance.
+
+
+
+7.4 Core Fuzzy DEMATEL Output — Prominence (D+R) and Relation (D-R)
+
+Table 7 presents the core Fuzzy DEMATEL outputs for all twelve algorithmic bias factors. D represents each factor's total outgoing influence (row sum of T); R represents total incoming influence (column sum of T). Prominence (D+R) quantifies each factor's overall systemic importance, while Relation (D-R) classifies factors as Cause Group drivers (D-R > 0) or Effect Group resultants (D-R < 0). Factors are ranked by |D-R| to highlight the most causally differentiated factors.
+
+
+
+Table 7: Fuzzy DEMATEL Core Results — D, R, Prominence (D+R), and Relation (D-R) Values
+
+Code
+
+Factor Description
+
+D
+
+R
+
+D+R (Prominence)
+
+D-R (Relation)
+
+Group
+
+Tier
+
+Rank
+
+B1
+
+Historical Training Data Bias
+
+9.840
+
+7.947
+
+17.787
+
++1.893
+
+CAUSE
+
+Tier 1
+
+1
+
+B3
+
+Lack of Algorithmic Transparency
+
+9.627
+
+8.472
+
+18.099
+
++1.155
+
+CAUSE
+
+Tier 1
+
+3
+
+B2
+
+Biased Feature Selection
+
+8.134
+
+8.801
+
+16.935
+
+-0.667
+
+EFFECT
+
+Tier 1
+
+6
+
+B4
+
+Homogeneous AI Dev Teams
+
+7.175
+
+5.967
+
+13.142
+
++1.208
+
+CAUSE
+
+Tier 1
+
+2
+
+B7
+
+Inadequate Bias Auditing
+
+7.779
+
+7.483
+
+15.262
+
++0.296
+
+CAUSE
+
+Tier 2
+
+5
+
+B8
+
+Absence of DEI-Weighted Optimiz.
+
+7.655
+
+7.657
+
+15.312
+
+-0.002
+
+Effect (Marginal)
+
+Tier 2
+
+8
+
+B6
+
+Algo. Perf. Appraisal Bias
+
+7.278
+
+7.771
+
+15.049
+
+-0.493
+
+EFFECT
+
+Tier 2
+
+7
+
+B5
+
+NLP Linguistic & Regional Bias
+
+6.681
+
+7.370
+
+14.051
+
+-0.689
+
+EFFECT
+
+Tier 2
+
+4
+
+B9
+
+Discriminatory Hiring Outcomes
+
+5.226
+
+8.130
+
+13.356
+
+-2.904
+
+EFFECT
+
+Tier 3
+
+11
+
+B10
+
+Inequitable Promotion Decisions
+
+4.840
+
+8.179
+
+13.019
+
+-3.339
+
+EFFECT
+
+Tier 3
+
+12
+
+B12
+
+Erosion of HR Trust
+
+5.748
+
+7.581
+
+13.329
+
+-1.833
+
+EFFECT
+
+Tier 3
+
+10
+
+B11
+
+Suppressed Employee Voice
+
+4.174
+
+7.114
+
+11.288
+
+-2.940
+
+EFFECT
+
+Tier 3
+
+9
+
+Note: D = Total Relation Matrix row sum (influence dispatched); R = Total Relation Matrix column sum (influence received); D+R = Prominence; D-R = Relation (positive = Cause; negative = Effect). Purple bold = primary Cause drivers; Red bold = primary Effect resultants. Threshold alpha = 0.581.
+
+
+
+7.5 Cause-Effect Diagram — Three-Tier Bias Propagation Architecture
+
+The Fuzzy DEMATEL cause-effect analysis reveals a three-tiered bias propagation architecture. Figure 1 (represented as structured table below) maps all twelve factors by their causal classification and tier position, revealing the systemic flow of algorithmic bias from structural sources through process amplifiers to outcome manifestations:
+
+
+
+Figure 1: Fuzzy DEMATEL Cause-Effect Diagram — Three-Tier Algorithmic Bias Propagation Architecture
+
+CAUSE GROUP (D-R > 0)  —  Bias Drivers
+
+Factors that propagate algorithmic bias throughout the HR system
+
+B1  Hist. Training Data Bias                D-R = +1.893  [R1]
+
+B4  Homogeneous AI Dev Teams                D-R = +1.208  [R2]
+
+B3  Lack of Algo. Transparency              D-R = +1.155  [R3]
+
+B7  Inadequate Bias Auditing                D-R = +0.296  [R5]
+
+EFFECT GROUP (D-R < 0)  —  Bias Outcomes
+
+Factors that are resultants of upstream bias-driving forces
+
+B10  Inequitable Promotion Dec.            D-R = -3.339  [R12]
+
+B9  Discriminatory Hiring Outc.           D-R = -2.904  [R11]
+
+B11  Suppressed Employee Voice             D-R = -2.940  [R9]
+
+B12  Erosion of HR Trust                   D-R = -1.833  [R10]
+
+B6  Algo. Perf. Appraisal Bias            D-R = -0.493  [R7]
+
+B5  NLP Linguistic Bias                   D-R = -0.689  [R4]
+
+B2  Biased Feature Selection              D-R = -0.667  [R6]
+
+Note: significance: |D-R| > 1.0. Cause factors flow downward into Effect factors through direct and indirect causal pathways mapped by the Total Relation Matrix T. B8 (D-R = -0.002) classified as Effect (marginal) — near-zero relation indicates it functions as a system node rather than strong cause or effect.
+
+
+
+7.6 Bias Factor Prominence Ranking — DEI Impact Classification
+
+Table 8 presents the full prominence ranking with DEI impact classification, linking each factor's systemic importance to its specific bias dimensions and Indian corporate manifestations:
+
+
+
+Table 8: Prominence Ranking and DEI Impact Classification
+
+Rank
+
+Factor
+
+D+R
+
+D-R
+
+Group
+
+Primary Bias Dim.
+
+Indian Corporate Manifestation
+
+1
+
+B3: Lack of Algo. Transparency
+
+18.099
+
++1.155
+
+Cause
+
+All Dimensions
+
+Black-box vendor procurement; no explainability mandate
+
+2
+
+B1: Historical Training Data Bias
+
+17.787
+
++1.893
+
+Cause
+
+Gender, Caste
+
+Training data reflects pre-reservation hiring patterns
+
+3
+
+B2: Biased Feature Selection
+
+16.935
+
+-0.667
+
+Effect
+
+Caste (proxy)
+
+College name/location as caste proxy in screening
+
+4
+
+B7: Inadequate Bias Auditing
+
+15.262
+
++0.296
+
+Cause
+
+All Dimensions
+
+No mandatory AI audit law in India; voluntary only
+
+5
+
+B8: Absence DEI Optimization
+
+15.312
+
+-0.002
+
+Effect (Marginal)
+
+Gender, Disability
+
+Pure accuracy optimization ignores equity constraints
+
+6
+
+B6: Algo. Perf. Appraisal Bias
+
+15.049
+
+-0.493
+
+Effect
+
+Gender
+
+AI appraisal bias in WFH performance eval (women)
+
+7
+
+B5: NLP Linguistic Bias
+
+14.051
+
+-0.689
+
+Effect
+
+Region, Language
+
+Non-metro/vernacular-medium candidates disadvantaged
+
+8
+
+B4: Homogeneous AI Dev Teams
+
+13.142
+
++1.208
+
+Cause
+
+Gender, Caste
+
+Low diversity in Indian tech sector building HR AI tools
+
+9
+
+B9: Discriminatory Hiring Outcomes
+
+13.356
+
+-2.904
+
+Effect
+
+All Dimensions
+
+SC/ST/OBC/Women underrepresentation in AI-screened roles
+
+10
+
+B10: Inequitable Promotion Dec.
+
+13.019
+
+-3.339
+
+Effect
+
+Gender, Caste
+
+AI-linked appraisal scores feeding inequitable promotions
+
+11
+
+B12: Erosion of HR Trust
+
+13.329
+
+-1.833
+
+Effect
+
+All Dimensions
+
+Employee distrust in AI-HR systems across all groups
+
+12
+
+B11: Suppressed Employee Voice
+
+11.288
+
+-2.940
+
+Effect
+
+Religion, Disability
+
+AI HR chatbots inadequate for sensitive bias grievances
+
+
+
+7.7 Sensitivity Analysis — Threshold Variation Testing
+
+Table 9: Sensitivity Analysis — Cause-Effect Stability Across Four Threshold Values
+
+Threshold alpha
+
+Criteria Retained
+
+B1
+
+B3
+
+B4
+
+B7
+
+B2
+
+B5
+
+B6
+
+B9
+
+B10
+
+B11
+
+0.50
+
+All 12
+
+C
+
+C
+
+C
+
+C
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+0.581 (Base)
+
+11 of 12
+
+C
+
+C
+
+C
+
+C
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+0.65
+
+9 of 12
+
+C
+
+C
+
+C
+
+n/s
+
+Eff
+
+n/s
+
+Eff
+
+Eff
+
+Eff
+
+Eff
+
+0.72
+
+7 of 12
+
+C
+
+C
+
+n/s
+
+n/s
+
+Eff
+
+n/s
+
+n/s
+
+Eff
+
+Eff
+
+Eff
+
+Note: C = Cause Group; Eff = Effect Group; n/s = not significant at that threshold. B1, B3, B9, and B10 maintain stable classifications across all threshold values, confirming highest robustness. B7 becomes non-significant at alpha > 0.62.
+
+
+
+7.8 Intersectional Bias Intensity Analysis
+
+Table 10 presents the intersectional bias intensity matrix, quantifying how each Cause Group factor differentially impacts each protected identity dimension in the Indian corporate context. Intensity scores (1-5) are expert panel consensus ratings:
+
+
+
+Table 10: Intersectional Bias Intensity Matrix — Cause Group Factors vs. Protected Identity Dimensions
+
+Cause Factor (D-R)
+
+Gender
+
+Caste / Tribe
+
+Religion
+
+Region / Language
+
+Disability
+
+Composite Score (avg)
+
+B1: Hist. Training Data Bias (+1.893)
+
+5.0
+
+5.0
+
+4.2
+
+4.5
+
+3.8
+
+4.50
+
+B3: Lack of Algo. Transparency (+1.155)
+
+4.8
+
+4.9
+
+4.6
+
+4.7
+
+4.3
+
+4.66
+
+B4: Homogeneous AI Dev Teams (+1.208)
+
+4.7
+
+4.8
+
+3.9
+
+3.8
+
+3.5
+
+4.14
+
+B7: Inadequate Bias Auditing (+0.296)
+
+4.2
+
+4.5
+
+4.1
+
+4.3
+
+4.0
+
+4.22
+
+Overall Cause Group Impact (mean)
+
+4.68
+
+4.80
+
+4.20
+
+4.33
+
+3.90
+
+4.38
+
+Note: Scores 1-5 (1 = minimal bias intensity, 5 = extreme bias intensity). Expert panel consensus ratings. Caste/Tribe dimension receives highest average impact score (4.80), followed by Gender (4.68), confirming primacy of caste-gender intersectionality in Indian corporate AI-HR bias.
+
+
+
+8. The FAIR-AI Framework for DEI Bias Mitigation
+
+Synthesizing the Fuzzy DEMATEL causal findings, intersectional bias intensity analysis, and India-specific governance context, this study proposes the FAIR-AI Framework — a four-pillar governance structure for systematic DEI bias mitigation in Indian corporate AI-HR ecosystems. Each pillar is mapped to specific Cause Group or Tier factors identified through Fuzzy DEMATEL:
+
+
+
+Table 11: FAIR-AI Framework — Four-Pillar DEI Bias Mitigation Structure
+
+Pillar
+
+Component
+
+Core Actions
+
+Bias Factors Addressed
+
+Responsible Party
+
+Timeline
+
+F
+
+Fairness Auditing
+
+Mandatory quarterly algorithmic bias audits using differential impact analysis (DIA); Adverse Impact Ratio (AIR) monitoring across gender/caste/region/disability; Third-party audit certification requirement
+
+B7 (Primary), B6, B5, B2
+
+CHRO + External Auditor
+
+Quarterly
+
+A
+
+Inclusive Data Design
+
+Audit and remediate historical training datasets for underrepresentation of SC/ST/OBC, women, and differently-abled candidates; Synthetic data augmentation for minority group representation; Bias-conscious feature engineering removing caste/gender proxies
+
+B1 (Primary), B2, B4
+
+Data Science + DEI Teams
+
+Biannually
+
+I
+
+Regulatory Compliance
+
+Mandate algorithmic transparency disclosures to candidates; Implement explainable AI (XAI) modules for all HR decision tools; Align with India's Digital Personal Data Protection Act 2023 and forthcoming AI governance framework; Constitutional reservation compliance monitoring
+
+B3 (Primary), B8
+
+Legal + Compliance + HR
+
+Ongoing
+
+R
+
+Representation Monitoring
+
+Real-time dashboards tracking hiring, promotion, and pay equity outcomes disaggregated by gender/caste/region/disability; Employee voice mechanisms with non-AI escalation for bias grievances; Diversity-weighted AI optimization constraints in HR system procurement
+
+B9, B10, B11, B12 (Outcomes)
+
+HR Analytics + DEI Council
+
+Monthly
+
+Note: FAIR-AI = Fairness Auditing, Inclusive Data Design, Regulatory Compliance, Representation Monitoring. Each pillar is anchored to specific Fuzzy DEMATEL-identified Cause Group factors, ensuring evidence-based governance targeting.
+
+
+
+9. Discussion
+
+The output of the Fuzzy DEMATEL technique provides us with conclusions that are, both analytically and practically, significant for Indian business organizations seeking to establish effective DEI-oriented corporate AI governance. The first such conclusion concerns the highest prominence among the Cause Factors in our model: that of Historical Training Data Bias (B1). This is an important finding because, according to Barocas and Selbst (2016), discriminatory algorithmic impact occurs not as a result of algorithmic design failure, but due to data quality issues that affect the learning process of the algorithm. Specifically, historical data on hiring practices in India contain centuries of discrimination based on caste membership: Indian corporations were unable to provide formal training and jobs to people with caste backgrounds. Hence, when AI HR management systems analyze these datasets, they perpetuate, accelerate, and even multiply existing biases.
+
+Another significant conclusion pertains to the highest systemic importance ranking obtained by Lack of Algorithmic Transparency (B3). The significance of this factor in terms of its systemic reach and importance is evident from the data. What is more troubling about this is the fact that it is one of the few Cause Group factors that cannot be dealt with using the available technological resources. In order to ensure the transparency of AI systems in HR, organizations require legislation mandating explainable AI algorithms, but nothing like this exists in India. Our FAIR-AI Framework addresses this issue through the Regulatory Compliance pillar.
+
+The high negative rankings of Inequitable Promotion Decisions (B10) and Discriminatory Hiring Outcomes (B9) as the two most deeply embedded Effect Factors point towards yet another problem in the use of AI HR: namely, how candidates are denied both access and promotion opportunities through algorithmic decision-making. In fact, as can be observed from the ranking above, the effect of discrimination here is multiplied rather than merely added to: each barrier is reinforcing the previous one in the chain, making it very difficult to break this vicious circle unless Cause Group interventions are employed.
+
+Finally, the intersectional bias intensity analysis (see Table 10 below) has shown Caste/Tribe (mean intensity 4.80) and Gender (4.68) to be the most severely discriminated against categories among those examined. The low Disability discrimination levels (mean 3.90) may well be attributable to expert panel underestimations rather than actual non-bias: disability status is usually underreported in Indian corporations' HR data.
+
+
+
+10. Practical Applications
+
+Prioritize Investment in Cause Groups Factors: Corporations need to dedicate more than 50% of the budget allocated for AI-DEI governance on these four causes – B1: Historical Training Data Bias, B3: Lack of Algorithmic Transparency, B4: Homogeneous AI Development Teams, and B7: Inadequate Bias Auditing. Using fuzzy DEMATEL analysis, it can be established that improvement in these causes results in positive effects on all other effects in the model due to cascading impact.
+
+Pre-Deployment Bias Assessment Requirement: Any AI-based tool being deployed in the organization for recruitment, performance evaluation, employee promotion, and pay decisions needs to undergo a mandatory pre-deployment bias assessment based on India-specific categories protected against discrimination. This is an important aspect of the FAIR-AI Pillar F: Fairness Auditing.
+
+Historical Data Audit Protocol for DEI: It is recommended that corporates in India have a historical data audit protocol which requires the data science team members working on the HR-related AI systems to conduct audit of the demographic distribution within the training data and identify overtly discriminatory periods pre-Employee Equal Opportunity policies.
+
+Diversity Diversity Recruitment for AI Development Teams: Because of the influence of Homogeneous AI Development Teams (B4), Indian IT and HR technology companies must adopt a policy of recruiting diverse development teams for the creation of HR AI technologies. This will help bring to light any blind spots within training data sets and algorithmic features that may not have been previously discovered when developed exclusively by a homogenous team (SC/ST/OBC members, women technologists, and professionals from outside metropolitan areas).
+
+Mandatory AI-HR Regulatory Standards Advocacy: Indian business federations (CII, NASSCOM, FICCI) should engage in lobbying with the Ministry of Electronics and Information Technology (MeitY) to develop necessary mandatory regulations on AI-HR governance that incorporate India's intersectional dimensions related to DEI concerns, especially algorithmic bias auditing, mandatory disclosures, and redress mechanisms for algorithmic discrimination in the Digital Personal Data Protection Act 2023.
+
+
+
+11. Conclusion
+
+The current paper provides the very first causal mapping of algorithmic bias factors in AI-supported HR management operations within Indian corporates using a novel Fuzzy DEMATEL methodology, thereby yielding innovative insights as well. From the analysis of 22 expert responses in respect of 12 algorithmic bias factors, it is evident that a three-stage causal mechanism operates with respect to bias factors in AI-HR operations, wherein four main Cause Group biases (Historical Training Data Bias, Lack of Algorithmic Transparency, Homogeneous AI Development Team, Poor Bias Audit Practice) influence eight Effect Group outcomes (Inequitable Promotion Decision and Discriminatory Hiring, respectively ranked D-R=-3.339 and -2.904).
+
+The results of sensitivity analysis show that the core causal classifications especially those associated with B1, B3, B9, and B10 are resilient against threshold variation. These findings further increase the certainty regarding the priorities for governance emerging from them. As for intersectional bias intensity analysis, it proves that caste and gender are the main categories of algorithmic bias threat related to the implementation of AI-HR systems in Indian corporates, while regional/linguistic and religious categories are secondary. Finally, the FAIR-AI Framework converts all the results above into four different governance pillars, namely: Fairness Auditing, Inclusive Data Design, Regulatory Compliance, and Representation Monitoring. Each pillar is based on certain cause group factors according to Fuzzy DEMATEL methodology.
+
+There are serious risks associated with ignoring this problem. If no intervention measures are taken at the Cause Groups' level, then any AI-assisted HR systems in Indian corporations will be used as instruments of perpetuating discrimination on their structural basis. Consequently, the constitutionally established commitment to equality and affirmative action will be undermined by the pseudo-objective nature of the algorithms. It is crucial that the future research focus on several areas validate the framework by applying the longitudinal case study approach, establish bias audit standards applicable specifically in the context of India and legally enforceable, and analyze LLM-based HR biases.
+
+References
+
+Agarwal, P., Nagar, N., & Srivastava, S. (2021). Examining gender bias in AI-based recruitment tools: Evidence from Indian IT sector. Journal of Management in Engineering, 37(4), 04021034.
+
+
+
+Barocas, S., & Selbst, A. D. (2016). Big data's disparate impact. California Law Review, 104(3), 671-732. https://doi.org/10.15779/Z38BG31
+
+
+
+Bonilla-Silva, E. (1997). Rethinking racism: Toward a structural interpretation. American Sociological Review, 62(3), 465-480. https://doi.org/10.2307/2657316
+
+
+
+Buolamwini, J., & Gebru, T. (2018). Gender shades: Intersectional accuracy disparities in commercial gender classification. Proceedings of Machine Learning Research, 81, 1-15.
+
+
+
+Chang, B., Chang, C. W., & Wu, C. H. (2011). Fuzzy DEMATEL method for developing supplier selection criteria. Expert Systems with Applications, 38(3), 1850-1858.
+
+
+
+Chen, F. H. (2015). Application of a hybrid dynamic MCDM to explore the key factors for the internal control of procurement circulation. International Journal of Production Research, 53(10), 2951-2969.
+
+
+
+Chouldechova, A. (2017). Fair prediction with disparate impact: A study of bias in recidivism prediction instruments. Big Data, 5(2), 153-163. https://doi.org/10.1089/big.2016.0047
+
+
+
+Corbett-Davies, S., & Goel, S. (2018). The measure and mismeasure of fairness: A critical review of fair machine learning. arXiv:1808.00023. https://arxiv.org/abs/1808.00023
+
+
+
+Crenshaw, K. (1989). Demarginalizing the intersection of race and sex: A Black feminist critique of antidiscrimination doctrine. University of Chicago Legal Forum, 1989(1), 139-167.
+
+
+
+Dastin, J. (2018, October 10). Amazon scraps secret AI recruiting tool that showed bias against women. Reuters. https://www.reuters.com/article/us-amazon-com-jobs-automation-insight
+
+
+
+Dwork, C., Hardt, M., Pitassi, T., Reingold, O., & Zemel, R. (2012). Fairness through awareness. Proceedings of the 3rd Innovations in Theoretical Computer Science Conference, 214-226. https://doi.org/10.1145/2090236.2090255
+
+
+
+Eubanks, V. (2018). Automating inequality: How high-tech tools profile, police, and punish the poor. St. Martin's Press.
+
+
+
+Gabus, A., & Fontela, E. (1972). World problems, an invitation to further thought within the framework of DEMATEL. Battelle Geneva Research Centre.
+
+
+
+Govindan, K., Azevedo, S. G., Carvalho, H., & Cruz-Machado, V. (2016). Lean, green and resilient practices influence on supply chain performance. International Journal of Environmental Science and Technology, 12(1), 15-34.
+
+
+
+Jiang, J., Wang, S., & Zhao, M. (2020). Critical success factors for talent management in large enterprises: A DEMATEL approach. Journal of Business Research, 118, 492-503.
+
+
+
+Jodhka, S. S., & Newman, K. (2007). In the name of globalisation: Meritocracy, productivity and the hidden language of caste. Economic and Political Weekly, 42(41), 4125-4132.
+
+
+
+Lambrecht, A., & Tucker, C. (2019). Algorithmic bias? An empirical study of apparent gender-based discrimination in the display of STEM career ads. Management Science, 65(7), 2966-2981. https://doi.org/10.1287/mnsc.2018.3093
+
+
+
+Madheswaran, S., & Attewell, P. (2007). Caste discrimination in the Indian urban labour market: Evidence from the National Sample Survey. Economic and Political Weekly, 42(41), 4146-4153.
+
+
+
+NASSCOM. (2024). AI adoption in Indian HR functions: State of the market report 2024. National Association of Software and Service Companies.
+
+
+
+Raghavan, M., Barocas, S., Kleinberg, J., & Levy, K. (2020). Mitigating bias in algorithmic hiring: Evaluating claims and practices. Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency, 469-481.
+
+
+
+Sánchez-Monedero, J., Dencik, L., & Edwards, L. (2020). What does it mean to solve the problem of discrimination in hiring? Social, technical and legal perspectives from the UK on automated hiring tools. Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency, 458-468.
+
+
+
+Sharma, M., Luthra, S., Joshi, S., & Kumar, A. (2022). Developing a framework for enhancing survivability of sustainable supply chains during and post-COVID-19 pandemic. International Journal of Logistics Research and Applications, 25(4-5), 433-453.
+
+
+
+Si, S. L., You, X. Y., Liu, H. C., & Zhang, P. (2018). DEMATEL technique: A systematic review of the state-of-the-art literature on methodologies and applications. Mathematical Problems in Engineering, 2018, 1-33.
+
+
+
+Singh, R., Singh, R. K., & Mishra, P. (2022). Analysing barriers for workplace inclusion using Fuzzy DEMATEL: Evidence from Indian manufacturing sector. Management Decision, 60(6), 1745-1768.
+
+
+
+Srinivasan, R. (2017). Whose global village? Rethinking how technology shapes our world. New York University Press.
+

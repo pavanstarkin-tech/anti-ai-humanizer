@@ -1,0 +1,93 @@
+{
+  "testRunId": "qa-run-1790833565762",
+  "timestamp": "2026-10-01T05:46:05.763Z",
+  "sourceDocument": "clinical_decision_support_eval.txt",
+  "sourceHash": "92e28d447717e5f7196a06eb7c727678a10355bfd9f7cda2bfcec4b1b44a4053",
+  "pageCount": 6,
+  "modelsConfigured": [
+    {
+      "role": "classifier",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "medicalExpert",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "scientificExpert",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "generalWriter",
+      "modelId": "mistralai/mistral-large-2-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "meaningEvaluator",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "naturalnessEvaluator",
+      "modelId": "nvidia/nemotron-4-340b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "refinement",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    }
+  ],
+  "anchors": {
+    "numericalCount": 38,
+    "numericalSamples": [
+      "15",
+      "240",
+      "2024",
+      "91.4",
+      "88.7",
+      "93.2",
+      "$4,500",
+      "42.5",
+      "4",
+      "45"
+    ],
+    "citations": [
+      "[1]",
+      "[2]",
+      "[3]",
+      "[4]",
+      "[5]",
+      "[6]"
+    ],
+    "protectedPlaceholders": [
+      "[EQUATION_001]",
+      "[EQUATION_002]",
+      "[IMAGE_001]",
+      "[TABLE_001]",
+      "[TABLE_002]"
+    ],
+    "terminology": [
+      "clinical decision-support",
+      "sensitivity",
+      "specificity",
+      "false positive",
+      "ROC-AUC",
+      "confidence interval",
+      "telemetry",
+      "EHR",
+      "anonymization"
+    ],
+    "structural": {
+      "pageCount": 6,
+      "headingCount": 8,
+      "tableCount": 2,
+      "imageCount": 1,
+      "equationCount": 2,
+      "citationCount": 6
+    }
+  }
+}

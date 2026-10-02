@@ -1,0 +1,39 @@
+{
+  "name": "domain-aware-humanizer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Domain-Aware Multi-Expert Humanization Platform with Independent Evaluation and Human-in-the-Loop Page Approval",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm --workspace=apps/api run dev",
+    "dev:web": "npm --workspace=apps/web run dev",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm --workspace=apps/api run test",
+    "test:unit": "npm --workspace=apps/api run test:unit",
+    "test:integration": "npm --workspace=apps/api run test:integration",
+    "test:e2e": "npm --workspace=apps/api run test:e2e",
+    "prisma:generate": "prisma generate --schema=prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate deploy --schema=prisma/schema.prisma",
+    "prisma:push": "prisma db push --schema=prisma/schema.prisma",
+    "prisma:seed": "node apps/api/dist/scripts/seed.js",
+    "lint": "eslint . --ext .ts,.tsx",
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "@prisma/client": "^7.10.0",
+    "@prisma/debug": "^7.10.0",
+    "concurrently": "^8.2.2",
+    "jest": "^30.5.2",
+    "prisma": "^5.22.0",
+    "ts-jest": "^29.4.14",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "docx": "^9.8.1",
+    "mammoth": "^1.13.0"
+  }
+}

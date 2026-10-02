@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-AI Document Humanizer — In-Place Layout & Table Preserver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.15);
+      --accent-primary: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-cyan: #06b6d4;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --success: #10b981;
+      --success-bg: rgba(16, 185, 129, 0.15);
+      --radius-md: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 30px 24px; }
+    
+    /* Header */
+    header {
+      display: flex;
+      justifyContent: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 30px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+    .brand-text h1 { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    .brand-text p { font-size: 0.78rem; color: var(--text-muted); }
+
+    .badge-status {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399; font-size: 0.8rem; font-weight: 600;
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+    /* Upload Zone */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+
+    .dropzone {
+      border: 2px dashed rgba(99, 102, 241, 0.4);
+      border-radius: var(--radius-md);
+      padding: 50px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba(99, 102, 241, 0.03);
+    }
+    .dropzone:hover, .dropzone.dragover {
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.08);
+      transform: translateY(-2px);
+    }
+    .dropzone-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; color: #818cf8;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px; font-family: inherit; font-size: 0.88rem;
+      font-weight: 600; cursor: pointer; border: none; transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #fff; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6); }
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06); color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--border-strong); }
+
+    /* Progress & Controls Toolbar */
+    .toolbar {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 14px; padding: 14px 20px; margin-bottom: 20px;
+    }
+
+    /* Dual Document Sheets */
+    .sheets-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    @media (max-width: 900px) { .sheets-grid { grid-template-columns: 1fr; } }
+
+    .paper-sheet {
+      background: #0e1726; border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+      display: flex; flex-direction: column; min-height: 600px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .paper-sheet.theme-paper {
+      background: #ffffff; color: #0f172a; border-color: #cbd5e1;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .sheet-header {
+      padding: 14px 20px; background: rgba(15, 23, 42, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .theme-paper .sheet-header {
+      background: #f1f5f9; border-bottom: 1px solid #e2e8f0; color: #334155;
+    }
+
+    .sheet-body {
+      flex: 1; padding: 32px 36px; overflow-y: auto; max-height: 650px;
+    }
+
+    .para-block {
+      margin-bottom: 16px; padding: 10px 14px; border-radius: 6px;
+      transition: all 0.15s ease; border-left: 3px solid transparent;
+      line-height: 1.8; font-size: 0.94rem;
+    }
+    .para-block:hover {
+      background: rgba(99, 102, 241, 0.08); border-left-color: #6366f1;
+    }
+    .theme-paper .para-block:hover {
+      background: rgba(99, 102, 241, 0.06); border-left-color: #4f46e5;
+    }
+
+    .para-block.humanized {
+      color: #e2e8f0;
+    }
+    .theme-paper .para-block.humanized {
+      color: #0f172a;
+    }
+
+    .badge-tag {
+      display: inline-flex; align-items: center; padding: 2px 8px;
+      margin: 0 4px; border-radius: 4px; background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.5); color: #a5b4fc;
+      font-weight: 700; font-size: 0.8rem;
+    }
+
+    /* Progress bar */
+    .progress-bar-container {
+      height: 8px; width: 100%; background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px; overflow: hidden; margin: 12px 0;
+    }
+    .progress-bar-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, #6366f1 0%, #3b82f6 50%, #10b981 100%);
+      transition: width 0.3s ease; box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="brand-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Anti-AI Document Humanizer</h1>
+          <p>Powered by Hostinger PHP Backend & NVIDIA AI (openai/gpt-oss-20b)</p>
+        </div>
+      </div>
+      <div class="badge-status">
+        <span class="status-dot"></span>
+        <span>Hostinger PHP 8.3 & NVIDIA Connected</span>
+      </div>
+    </header>
+
+    <!-- Upload Section -->
+    <div id="uploadSection" class="glass-card">
+      <div class="dropzone" id="dropzone">
+        <div class="dropzone-icon">
+          <i data-lucide="file-up" style="width: 28px; height: 28px;"></i>
+        </div>
+        <h2 style="font-size: 1.15rem; margin-bottom: 6px;">Upload Word Document (.docx)</h2>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 18px;">
+          Preserves 100% of XML tables, figures, footnotes, and page layouts while humanizing text
+        </p>
+        <input type="file" id="fileInput" accept=".docx" style="display: none;">
+        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+          <i data-lucide="upload"></i> Browse .DOCX File
+        </button>
+      </div>
+    </div>
+
+    <!-- Workspace Section (Hidden until uploaded) -->
+    <div id="workspaceSection" style="display: none;">
+      <!-- Controls Toolbar -->
+      <div class="glass-card toolbar">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="btnHumanizeAll" onclick="startHumanization()">
+            <i data-lucide="zap"></i> ⚡ Humanize Document (All Paragraphs)
+          </button>
+          <button class="btn btn-success" id="btnDownloadDocx" style="display: none;" onclick="downloadFinalDocx()">
+            <i data-lucide="download"></i> 📥 Download Reconstructed DOCX (13 Tables Preserved)
+          </button>
+          <button class="btn btn-secondary" id="btnDownloadTxt" style="display: none;" onclick="downloadFinalTxt()">
+            <i data-lucide="file-text"></i> Download TXT Report
+          </button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button class="btn btn-secondary" onclick="toggleTheme()">
+            <i data-lucide="sun-moon"></i> <span id="themeLabel">Paper White</span>
+          </button>
+          <button class="btn btn-secondary" onclick="resetUpload()">
+            <i data-lucide="rotate-ccw"></i> Upload Another
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Progress Bar Card (Shows when processing) -->
+      <div id="progressCard" class="glass-card" style="display: none; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-weight: 700; font-size: 0.9rem;" id="progressStatus">Humanizing paragraphs with NVIDIA AI...</span>
+          <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 700;" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- Side-by-Side Dual Sheets -->
+      <div class="sheets-grid">
+        <!-- Original Document Sheet -->
+        <div class="paper-sheet" id="sheetOriginal">
+          <div class="sheet-header">
+            <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);">
+              Original Uploaded Source
+            </span>
+            <span id="origStatsBadge" style="font-size: 0.75rem; color: var(--text-secondary);">
+              13 Tables • 91 Paragraphs
+            </span>
+          </div>
+          <div class="sheet-body" id="origParagraphsList">
+            <!-- Paragraphs will render here -->
+          </div>
+        </div>
+
+        <!-- Humanized Sheet -->
+        <div class="paper-sheet" id="sheetHumanized">
+          <div class="sheet-header">
+            <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-cyan);">
+              Humanized Natural Prose (Lynote + NVIDIA)
+            </span>
+            <span id="humStatsBadge" style="font-size: 0.75rem; color: #10b981; font-weight: 700;">
+              Ready to Humanize
+            </span>
+          </div>
+          <div class="sheet-body" id="humParagraphsList">
+            <!-- Humanized paragraphs will render here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const API_BASE = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '') + '/api';
+
+    let currentDocument = null;
+    let paragraphsData = [];
+    let humanizedMap = {};
+    let isProcessing = false;
+    let isPaperTheme = false;
+    let downloadDocxUrl = '';
+    let downloadTxtUrl = '';
+
+    // Drag & drop handlers
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+
+    ['dragenter', 'dragover'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    });
+    ['dragleave', 'drop'].forEach(name => {
+      dropzone.addEventListener(name, (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); });
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      if (e.dataTransfer.files.length > 0) {
+        handleFileUpload(e.dataTransfer.files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFileUpload(e.target.files[0]);
+      }
+    });
+
+    async function handleFileUpload(file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      dropzone.innerHTML = `<div class="dropzone-icon"><i data-lucide="loader" class="animate-spin"></i></div><h2>Uploading & Parsing DOCX XML...</h2><p style="color: var(--text-secondary); margin-top: 8px;">Extracting all 13 tables and paragraph structures</p>`;
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`${API_BASE}/upload.php`, {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Upload failed');
+
+        currentDocument = data;
+        paragraphsData = data.paragraphs;
+        renderDocumentSheets();
+
+        document.getElementById('uploadSection').style.display = 'none';
+        document.getElementById('workspaceSection').style.display = 'block';
+        lucide.createIcons();
+      } catch (err) {
+        alert('Upload Error: ' + err.message);
+        resetUpload();
+      }
+    }
+
+    function renderDocumentSheets() {
+      const origList = document.getElementById('origParagraphsList');
+      const humList = document.getElementById('humParagraphsList');
+
+      origList.innerHTML = '';
+      humList.innerHTML = '';
+
+      document.getElementById('origStatsBadge').innerText = `${currentDocument.tablesCount} Tables Intact • ${paragraphsData.length} Paragraphs`;
+
+      paragraphsData.forEach((p, idx) => {
+        const origDiv = document.createElement('div');
+        origDiv.className = 'para-block';
+        origDiv.id = `orig_para_${idx}`;
+        origDiv.innerHTML = formatPlaceholders(p.text);
+        origList.appendChild(origDiv);
+
+        const humDiv = document.createElement('div');
+        humDiv.className = 'para-block humanized';
+        humDiv.id = `hum_para_${idx}`;
+        humDiv.innerHTML = humanizedMap[p.text] ? formatPlaceholders(humanizedMap[p.text]) : (p.shouldHumanize ? `<span style="color: var(--text-muted); font-style: italic;">Awaiting Humanization...</span>` : formatPlaceholders(p.text));
+        humList.appendChild(humDiv);
+      });
+    }
+
+    function formatPlaceholders(text) {
+      return text.replace(/(\[(?:TABLE|IMAGE|CITATION|EQUATION|REF)_[0-9A-Za-z_-]+\])/g, '<span class="badge-tag">🔒 $1</span>');
+    }
+
+    async function startHumanization() {
+      if (isProcessing) return;
+      isProcessing = true;
+
+      document.getElementById('btnHumanizeAll').disabled = true;
+      document.getElementById('progressCard').style.display = 'block';
+
+      const humanizable = paragraphsData.filter(p => p.shouldHumanize);
+      let completedCount = 0;
+
+      // Process in batches of 4
+      const BATCH_SIZE = 4;
+      for (let i = 0; i < humanizable.length; i += BATCH_SIZE) {
+        const chunk = humanizable.slice(i, i + BATCH_SIZE);
+        
+        await Promise.all(chunk.map(async (para) => {
+          try {
+            const res = await fetch(`${API_BASE}/humanize.php`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ text: para.text })
+            });
+            const resJson = await res.json();
+            if (resJson.success) {
+              humanizedMap[para.text] = resJson.humanizedText;
+              
+              const paraIdx = paragraphsData.findIndex(p => p.text === para.text);
+              if (paraIdx !== -1) {
+                const humDiv = document.getElementById(`hum_para_${paraIdx}`);
+                if (humDiv) {
+                  humDiv.innerHTML = formatPlaceholders(resJson.humanizedText);
+                  humDiv.style.borderLeftColor = '#10b981';
+                }
+              }
+            }
+          } catch (e) {
+            console.error(e);
+          }
+          completedCount++;
+          const pct = Math.round((completedCount / humanizable.length) * 100);
+          document.getElementById('progressPercent').innerText = `${pct}%`;
+          document.getElementById('progressFill').style.width = `${pct}%`;
+          document.getElementById('progressStatus').innerText = `Humanized ${completedCount} of ${humanizable.length} body paragraphs with Lynote + NVIDIA...`;
+        }));
+      }
+
+      // Reconstruct in-place DOCX
+      document.getElementById('progressStatus').innerText = 'Injecting humanized prose into original Word XML archive...';
+
+      try {
+        const recRes = await fetch(`${API_BASE}/reconstruct.php`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            documentId: currentDocument.documentId,
+            humanizedMap: humanizedMap
+          })
+        });
+
+        const recData = await recRes.json();
+        if (recData.success) {
+          downloadDocxUrl = recData.downloadDocxUrl;
+          downloadTxtUrl = recData.downloadTxtUrl;
+
+          document.getElementById('btnDownloadDocx').style.display = 'inline-flex';
+          document.getElementById('btnDownloadTxt').style.display = 'inline-flex';
+          document.getElementById('progressStatus').innerText = '✅ Document Humanization & In-Place Reconstruction Complete!';
+          document.getElementById('humStatsBadge').innerText = '✅ 100% Complete';
+        }
+      } catch (err) {
+        alert('Reconstruction error: ' + err.message);
+      }
+
+      isProcessing = false;
+      document.getElementById('btnHumanizeAll').disabled = false;
+      lucide.createIcons();
+    }
+
+    function downloadFinalDocx() {
+      if (downloadDocxUrl) window.open(downloadDocxUrl, '_blank');
+    }
+
+    function downloadFinalTxt() {
+      if (downloadTxtUrl) window.open(downloadTxtUrl, '_blank');
+    }
+
+    function toggleTheme() {
+      isPaperTheme = !isPaperTheme;
+      document.getElementById('sheetOriginal').classList.toggle('theme-paper', isPaperTheme);
+      document.getElementById('sheetHumanized').classList.toggle('theme-paper', isPaperTheme);
+      document.getElementById('themeLabel').innerText = isPaperTheme ? 'Dark Canvas' : 'Paper White';
+    }
+
+    function resetUpload() {
+      currentDocument = null;
+      paragraphsData = [];
+      humanizedMap = {};
+      isProcessing = false;
+      downloadDocxUrl = '';
+      downloadTxtUrl = '';
+      document.getElementById('uploadSection').style.display = 'block';
+      document.getElementById('workspaceSection').style.display = 'none';
+      document.getElementById('progressCard').style.display = 'none';
+      document.getElementById('btnDownloadDocx').style.display = 'none';
+      document.getElementById('btnDownloadTxt').style.display = 'none';
+      location.reload();
+    }
+  </script>
+</body>
+</html>

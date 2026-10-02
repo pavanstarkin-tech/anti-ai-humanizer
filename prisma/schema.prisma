@@ -1,0 +1,408 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum DocumentStatus {
+  DRAFT
+  PARSING
+  IN_PROGRESS
+  COMPLETED
+  RECONSTRUCTING
+  FAILED
+}
+
+enum PageState {
+  PENDING
+  PARSING
+  CLASSIFYING
+  GENERATING
+  EVALUATING
+  REFINING
+  READY_FOR_REVIEW
+  EDITED
+  APPROVED
+  FAILED
+}
+
+enum ElementType {
+  TABLE
+  IMAGE
+  DIAGRAM
+  CHART
+  EQUATION
+  CITATION
+  HEADER
+  FOOTER
+  PAGE_BREAK
+  CUSTOM_PROTECTED
+}
+
+enum SourceType {
+  ORIGINAL
+  AI_GENERATED
+  REFINED
+  USER_EDITED
+  APPROVED
+}
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+model User {
+  id           String          @id @default(uuid())
+  email        String          @unique
+  passwordHash String
+  name         String
+  role         Role            @default(USER)
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  documents    Document[]
+  approvals    Approval[]
+  pageVersions PageVersion[]
+  jobs         ProcessingJob[]
+  auditLogs    AuditLog[]
+
+  @@index([email])
+}
+
+model Document {
+  id                    String          @id @default(uuid())
+  userId                String
+  title                 String
+  originalFilename      String
+  mimeType              String
+  fileSize              Int
+  filePath              String
+  totalPages            Int             @default(0)
+  approvedPages         Int             @default(0)
+  status                DocumentStatus  @default(DRAFT)
+  reconstructedPath     String?
+  reconstructedMimeType String?
+  errorMessage          String?         @db.Text
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pages                 DocumentPage[]
+  elements              DocumentElement[]
+  jobs                  ProcessingJob[]
+  auditLogs             AuditLog[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model DocumentPage {
+  id                       String         @id @default(uuid())
+  documentId               String
+  pageNumber               Int
+  state                    PageState      @default(PENDING)
+  originalText             String         @db.MediumText
+  currentApprovedVersionId String?
+  activeCandidateId        String?
+  domainConfidence         Json?          // { "MEDICAL": 0.95, "SCIENTIFIC": 0.8 }
+  selectedExperts          Json?          // ["MEDICAL", "GENERAL_WRITING"]
+  totalIterations          Int            @default(0)
+  errorMessage             String?        @db.Text
+  createdAt                DateTime       @default(now())
+  updatedAt                DateTime       @updatedAt
+
+  document                 Document       @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  elements                 DocumentElement[]
+  versions                 PageVersion[]
+  candidates               Candidate[]
+  approvals                Approval[]
+  iterations               Iteration[]
+  jobs                     ProcessingJob[]
+  auditLogs                AuditLog[]
+
+  @@unique([documentId, pageNumber])
+  @@index([documentId])
+  @@index([state])
+}
+
+model DocumentElement {
+  id           String       @id @default(uuid())
+  documentId   String
+  pageId       String
+  placeholder  String       // e.g., [TABLE_001], [IMAGE_001]
+  type         ElementType
+  rawContent   String       @db.MediumText
+  metadata     Json?
+  orderIndex   Int          @default(0)
+  isLocked     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+
+  document     Document     @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  page         DocumentPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@index([pageId])
+  @@index([placeholder])
+}
+
+model PageVersion {
+  id                String       @id @default(uuid())
+  pageId            String
+  userId            String?
+  candidateId       String?
+  sourceType        SourceType
+  iterationNumber   Int          @default(0)
+  text              String       @db.MediumText
+  overallScore      Float?
+  evaluationSummary Json?
+  diffFromOriginal  String?      @db.MediumText
+  createdAt         DateTime     @default(now())
+
+  page              DocumentPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  user              User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  candidate         Candidate?   @relation(fields: [candidateId], references: [id], onDelete: SetNull)
+  evaluations       Evaluation[]
+  approvals         Approval[]
+
+  @@index([pageId])
+  @@index([sourceType])
+}
+
+model Candidate {
+  id                   String       @id @default(uuid())
+  pageId               String
+  iterationNumber      Int          @default(1)
+  expertType           String       // e.g. MEDICAL, SCIENTIFIC, GENERAL_WRITING
+  secondaryExpertType  String?
+  model                String
+  provider             String
+  promptVersion        String
+  text                 String       @db.MediumText
+  overallScore         Float?
+  isValid              Boolean      @default(true)
+  generationConfig     Json
+  createdAt            DateTime     @default(now())
+
+  page                 DocumentPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  evaluations          Evaluation[]
+  pageVersions         PageVersion[]
+
+  @@index([pageId])
+  @@index([iterationNumber])
+}
+
+model Evaluation {
+  id                         String       @id @default(uuid())
+  candidateId                String?
+  pageVersionId              String?
+  naturalness                Float        @default(0)
+  clarity                    Float        @default(0)
+  sentenceVariety            Float        @default(0)
+  repetitionReduction        Float        @default(0)
+  styleConsistency           Float        @default(0)
+  meaningPreservation        Float        @default(0)
+  factualConsistency         Float        @default(0)
+  terminologyPreservation    Float        @default(0)
+  citationPreservation       Float        @default(0)
+  protectedElementIntegrity  Float        @default(0)
+  overallScore               Float        @default(0)
+  passedGates                Boolean      @default(true)
+  failedReasons              Json?
+  rawFeedback                Json?
+  evaluatorModel             String
+  evaluatorPromptVersion     String
+  createdAt                  DateTime     @default(now())
+
+  candidate                  Candidate?   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  pageVersion                PageVersion? @relation(fields: [pageVersionId], references: [id], onDelete: Cascade)
+
+  @@index([candidateId])
+  @@index([pageVersionId])
+}
+
+model Expert {
+  id           String       @id @default(uuid())
+  name         String       @unique
+  expertType   String
+  domainType   String
+  description  String       @db.Text
+  systemPrompt String       @db.MediumText
+  isActive     Boolean      @default(true)
+  temperature  Float        @default(0.7)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([domainType])
+}
+
+model ModelProvider {
+  id           String       @id @default(uuid())
+  name         String       @unique @default("NVIDIA")
+  providerType String       @default("NVIDIA") // Fixed to NVIDIA
+  baseUrl      String?
+  isDefault    Boolean      @default(true)
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model AIModel {
+  id           String       @id @default(uuid())
+  provider     String       @default("NVIDIA")
+  modelId      String       @unique // e.g. meta/llama-3.3-70b-instruct
+  displayName  String
+  enabled      Boolean      @default(true)
+  capabilities Json?        // { chat: true, structured: true, vision: false }
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([provider])
+  @@index([enabled])
+}
+
+model AIExpert {
+  id                  String       @id @default(uuid())
+  name                String       @unique
+  domain              String       // MEDICAL, SCIENTIFIC, LEGAL, etc.
+  modelId             String       // NVIDIA model ID
+  systemPromptVersion String       @default("v1.0")
+  priority            Int          @default(1)
+  enabled             Boolean      @default(true)
+  config              Json?        // { temperature: 0.5, maxTokens: 4096 }
+  fallbackModelIds    Json?        // ["fallback-nvidia-model-1", "fallback-nvidia-model-2"]
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+
+  @@index([domain])
+  @@index([enabled])
+}
+
+model AITaskAssignment {
+  id               String       @id @default(uuid())
+  task             String       // CLASSIFY, REWRITE, EVALUATE, REFINE
+  role             String       @unique // generalWriter, medicalExpert, meaningEvaluator, etc.
+  modelId          String       // Primary NVIDIA model ID
+  fallbackModelIds Json?        // Fallback NVIDIA model IDs
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  @@index([task])
+}
+
+model AIRequestLog {
+  id            String       @id @default(uuid())
+  requestId     String       @unique
+  documentId    String?
+  pageId        String?
+  candidateId   String?
+  iteration     Int          @default(1)
+  task          String
+  expertId      String?
+  modelId       String
+  provider      String       @default("NVIDIA")
+  promptVersion String       @default("v1.0")
+  durationMs    Int          @default(0)
+  status        String       // SUCCESS, FAILED, FALLBACK
+  fallbackUsed  Boolean      @default(false)
+  inputTokens   Int?
+  outputTokens  Int?
+  totalTokens   Int?
+  errorMessage  String?      @db.Text
+  createdAt     DateTime     @default(now())
+
+  @@index([documentId])
+  @@index([pageId])
+  @@index([modelId])
+  @@index([task])
+  @@index([createdAt])
+}
+
+model ProcessingJob {
+  id              String       @id @default(uuid())
+  documentId      String
+  pageId          String?
+  userId          String
+  jobType         String       // PAGE_HUMANIZE, PAGE_REFINE, DOCUMENT_PARSE, DOCUMENT_RECONSTRUCT
+  status          JobStatus    @default(QUEUED)
+  progressPercent Int          @default(0)
+  currentStep     String?
+  resultPayload   Json?
+  errorPayload    Json?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  document        Document     @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  page            DocumentPage? @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([documentId])
+  @@index([pageId])
+  @@index([userId])
+  @@index([status])
+}
+
+model Approval {
+  id            String       @id @default(uuid())
+  pageId        String
+  pageVersionId String
+  userId        String
+  notes         String?      @db.Text
+  approvedAt    DateTime     @default(now())
+
+  page          DocumentPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  pageVersion   PageVersion  @relation(fields: [pageVersionId], references: [id], onDelete: Cascade)
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+  @@index([pageVersionId])
+  @@index([userId])
+}
+
+model Iteration {
+  id                  String       @id @default(uuid())
+  pageId              String
+  iterationNumber     Int
+  selectedCandidateId String?
+  targetScore         Float        @default(80)
+  achievedScore       Float        @default(0)
+  status              String       // COMPLETED, MAX_REACHED, REFINED
+  createdAt           DateTime     @default(now())
+
+  page                DocumentPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+  @@index([iterationNumber])
+}
+
+model AuditLog {
+  id         String       @id @default(uuid())
+  userId     String?
+  documentId String?
+  pageId     String?
+  action     String
+  metadata   Json?
+  ipAddress  String?
+  createdAt  DateTime     @default(now())
+
+  user       User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  document   Document?    @relation(fields: [documentId], references: [id], onDelete: SetNull)
+  page       DocumentPage? @relation(fields: [pageId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([documentId])
+  @@index([pageId])
+  @@index([action])
+  @@index([createdAt])
+}

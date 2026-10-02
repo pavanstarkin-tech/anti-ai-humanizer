@@ -1,0 +1,87 @@
+{
+  "testRunId": "user-doc-run-1790871482932",
+  "timestamp": "2026-10-01T16:18:02.932Z",
+  "sourceDocument": "2. Bias in AI recruitment.docx",
+  "sourceDocxHash": "6f893dd4d1220b4a4ae60b040e3f182d61a6ae4f08196f86463e2530b3fc13bf",
+  "sourceTxtHash": "3e6273c094063fcfc92e0633cd29af279dc569998eee29bc7b54713a0dc2a097",
+  "totalPages": 22,
+  "totalWords": 6805,
+  "anchors": {
+    "totalNumbersDetected": 335,
+    "sampleNumbers": [
+      "22",
+      "D-R = +1.247",
+      "D-R = +1.083",
+      "D-R = -1.312",
+      "D-R = -1.187",
+      "1",
+      "78%",
+      "500",
+      "2024",
+      "2016",
+      "1989",
+      "2018",
+      "2011",
+      "1.1",
+      "1.2"
+    ],
+    "totalCitationsDetected": 6,
+    "sampleCitations": [
+      "(NASSCOM, 2024)",
+      "(Dastin, 2018)",
+      "(Chang et al., 2011)",
+      "(Chen, 2015)",
+      "(Govindan et al., 2016)",
+      "(Sharma et al., 2022)"
+    ],
+    "terminology": [
+      "Algorithmic Bias",
+      "Diversity, Equity, and Inclusion",
+      "Fuzzy DEMATEL",
+      "HR Decision-Making",
+      "Training Data Bias",
+      "Algorithmic Transparency",
+      "Discriminatory Hiring Outcomes",
+      "Cause Group",
+      "Effect Group",
+      "Socio-Cultural Context"
+    ]
+  },
+  "modelsConfigured": [
+    {
+      "role": "classifier",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "academicExpert",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "technicalExpert",
+      "modelId": "mistralai/mistral-large-2-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "generalWriter",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "meaningEvaluator",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "naturalnessEvaluator",
+      "modelId": "nvidia/nemotron-4-340b-instruct",
+      "provider": "NVIDIA"
+    },
+    {
+      "role": "refinement",
+      "modelId": "meta/llama-3.3-70b-instruct",
+      "provider": "NVIDIA"
+    }
+  ]
+}

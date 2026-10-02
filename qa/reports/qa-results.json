@@ -1,0 +1,700 @@
+{
+  "testRunId": "qa-run-1790833565762",
+  "timestamp": "2026-10-01T05:59:34.450Z",
+  "metrics": {
+    "testStatus": "PASS",
+    "totalPages": 6,
+    "pagesPassed": 6,
+    "pagesFailed": 0,
+    "criticalFailures": 0,
+    "highFailures": 0,
+    "mediumFailures": 0,
+    "lowFailures": 0,
+    "meaningPreservationRate": 95,
+    "numericalPreservationRate": 100,
+    "citationPreservationRate": 100,
+    "protectedElementPreservationRate": 100,
+    "terminologyPreservationRate": 100,
+    "pageProcessingSuccessRate": 100,
+    "approvalWorkflowSuccessRate": 100,
+    "reconstructionIntegrityRate": 100,
+    "naturalnessBefore": 70,
+    "naturalnessAfter": 86,
+    "naturalnessAbsoluteGain": 16,
+    "naturalnessDistribution": {
+      "min": 86,
+      "max": 86,
+      "mean": 86,
+      "median": 86
+    },
+    "totalNvidiaModelCalls": 42,
+    "nvidiaModelFailures": 0,
+    "fallbackInvocations": 0,
+    "maxRefinementIterations": 3,
+    "averageIterationsPerCandidate": 1.2,
+    "hashes": {
+      "originalSha256": "92e28d447717e5f7196a06eb7c727678a10355bfd9f7cda2bfcec4b1b44a4053",
+      "reconstructedSha256": "92e28d447717e5f7196a06eb7c727678a10355bfd9f7cda2bfcec4b1b44a4053"
+    }
+  },
+  "pageScorecards": [
+    {
+      "pageNumber": 1,
+      "title": "Executive Summary & Introduction",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    },
+    {
+      "pageNumber": 2,
+      "title": "Methodology & Statistical Framework",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    },
+    {
+      "pageNumber": 3,
+      "title": "System Architecture & Data Pipelines",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    },
+    {
+      "pageNumber": 4,
+      "title": "Experimental Results & Performance Benchmarking",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    },
+    {
+      "pageNumber": 5,
+      "title": "Risk Analysis & Clinical Limitations",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    },
+    {
+      "pageNumber": 6,
+      "title": "Discussion, Conclusion & References",
+      "domain": "GENERAL",
+      "selectedModel": "meta/llama-3.3-70b-instruct",
+      "iterations": 1,
+      "naturalnessBefore": 70,
+      "naturalnessAfter": 86,
+      "clarity": 89,
+      "meaningPreservation": 95,
+      "factualConsistency": 95,
+      "terminologyPreservation": 92,
+      "citationPreservation": 96,
+      "protectedElementIntegrity": 100,
+      "hardGatesPassed": true
+    }
+  ],
+  "numericalAudit": [
+    {
+      "original": "15",
+      "humanized": "15",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "240",
+      "humanized": "240",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "2024",
+      "humanized": "2024",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "91.4",
+      "humanized": "91.4",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "88.7",
+      "humanized": "88.7",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "93.2",
+      "humanized": "93.2",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "$4,500",
+      "humanized": "$4,500",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "42.5",
+      "humanized": "42.5",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "4",
+      "humanized": "4",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "45",
+      "humanized": "45",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "164.514",
+      "humanized": "164.514",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "0.05",
+      "humanized": "0.05",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "0.892",
+      "humanized": "0.892",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "0.945",
+      "humanized": "0.945",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "4.0.1",
+      "humanized": "4.0.1",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "250",
+      "humanized": "250",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "220",
+      "humanized": "220",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "60",
+      "humanized": "60",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "6.8",
+      "humanized": "6.8",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "3.5",
+      "humanized": "3.5",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "34.2",
+      "humanized": "34.2",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "78.3",
+      "humanized": "78.3",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "14.2",
+      "humanized": "14.2",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "30",
+      "humanized": "30",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "58.0",
+      "humanized": "58.0",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "89.5",
+      "humanized": "89.5",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "500",
+      "humanized": "500",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "48",
+      "humanized": "48",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "112-124",
+      "humanized": "112-124",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "11",
+      "humanized": "11",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "45-59",
+      "humanized": "45-59",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "6",
+      "humanized": "6",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "88-102",
+      "humanized": "88-102",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "16",
+      "humanized": "16",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "201-215",
+      "humanized": "201-215",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "32",
+      "humanized": "32",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "330-342",
+      "humanized": "330-342",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    },
+    {
+      "original": "1042",
+      "humanized": "1042",
+      "status": "PRESERVED",
+      "severity": "NONE"
+    }
+  ],
+  "modelRequestLogs": [
+    {
+      "task": "CLASSIFY",
+      "page": 1,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 1,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 1,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 1,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 1,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 1,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 1,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "CLASSIFY",
+      "page": 2,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 2,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 2,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 2,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 2,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 2,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 2,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "CLASSIFY",
+      "page": 3,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 3,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 3,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 3,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 3,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 3,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 3,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "CLASSIFY",
+      "page": 4,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 4,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 4,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 4,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 4,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 4,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 4,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "CLASSIFY",
+      "page": 5,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 5,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 5,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 5,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 5,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 5,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 5,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "CLASSIFY",
+      "page": 6,
+      "expert": "DomainClassifier",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 6,
+      "candidateIndex": 1,
+      "expert": "GENERAL_WRITING",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 6,
+      "candidateIndex": 1,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 6,
+      "candidateIndex": 2,
+      "expert": "TECHNICAL",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 6,
+      "candidateIndex": 2,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "REWRITE",
+      "page": 6,
+      "candidateIndex": 3,
+      "expert": "GENERAL_WRITING",
+      "model": "mistralai/mistral-large-2-instruct",
+      "status": "SUCCESS"
+    },
+    {
+      "task": "EVALUATE_INDEPENDENT",
+      "page": 6,
+      "candidateIndex": 3,
+      "expert": "IndependentEvaluator",
+      "model": "meta/llama-3.3-70b-instruct",
+      "status": "SUCCESS"
+    }
+  ]
+}
